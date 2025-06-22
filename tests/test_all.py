@@ -34,6 +34,7 @@ def test_env(preserve_env):
     assert cfg["c1"] == "e1"
     assert cfg["c2"] == "e1/v2"
 
+
 def test_yaml_props_ref_and_env_and_mapping(preserve_env):
     os.environ["APP__C2"] = "e2"
     os.environ["APP__C3__C32"] = "e32"
