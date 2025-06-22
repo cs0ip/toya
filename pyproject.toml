@@ -24,6 +24,9 @@ classifiers = [
 ]
 license = "MIT"
 
+[project.urls]
+Homepage = "https://github.com/cs0ip/toya"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
