@@ -22,15 +22,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v4
         with:
-          python-version: "3.x"
+          enable-cache: true
+          cache-prefix: 'release'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync dependencies
+        run: rye sync
 
       - name: Build release distributions
         run: |
-          # NOTE: put your own distribution build steps here.
-          python -m pip install build
-          python -m build
+          rm -rf ./dist
+          rye build
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
@@ -51,7 +56,7 @@ jobs:
     environment:
       name: pypi
       # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
-      # url: https://pypi.org/p/YOURPROJECT
+      url: https://pypi.org/p/toya
       #
       # ALTERNATIVE: if your GitHub Release name is the PyPI project version string
       # ALTERNATIVE: exactly, uncomment the following line instead:
