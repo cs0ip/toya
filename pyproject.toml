@@ -1,6 +1,6 @@
 [project]
 name = "toya"
-version = "1.0.1"
+version = "1.0.2"
 description = "Configuration management with deferred binding and value templating"
 authors = [
     { name = "Sergei Galushkin", email = "cs0ip@ya.ru" }
