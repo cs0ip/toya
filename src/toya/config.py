@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from typing import Mapping, Any, List, MutableMapping
+from typing import Mapping, Any, MutableMapping, Iterable
 
 from jinja2 import Environment
 from mergedeep import merge
@@ -12,7 +12,7 @@ class ConfigError(Exception):
     pass
 
 
-def load_config(suppliers: List[Supplier]) -> MutableMapping[str, Any]:
+def load_config(suppliers: Iterable[Supplier]) -> MutableMapping[str, Any]:
     res: MutableMapping[str, Any] = OrderedDict()
     for supplier in suppliers:
         data = supplier.get()
@@ -37,7 +37,7 @@ def eval_config(config: MutableMapping[str, Any]) -> None:
     eval_cfg(config)
 
 
-def load_and_eval_config(suppliers: List[Supplier]) -> MutableMapping[str, Any]:
+def load_and_eval_config(suppliers: Iterable[Supplier]) -> MutableMapping[str, Any]:
     config = load_config(suppliers)
     eval_config(config)
     return config
